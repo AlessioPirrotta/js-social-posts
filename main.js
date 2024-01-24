@@ -91,7 +91,6 @@ const posts = [
     }
 ];
 
-console.log(posts.id)
 
 
 let cardContainer= document.getElementById("container")
@@ -107,7 +106,7 @@ posts.forEach((element,index)=>{
              </div>
              <div class="post-meta__data">
                  <div class="post-meta__author">${element.author.name}</div>
-                 <div class="post-meta__time">${element.created}</div>
+                 <div class="post-meta__time">${formatDate(element.created)}</div>
              </div>                    
          </div>
      </div>
@@ -129,7 +128,7 @@ posts.forEach((element,index)=>{
          </div> 
      </div>            
  </div>`
- 
+ const formattedDate = formatDate(element.created);
 })
 
 let arrayPostLikes= []
@@ -153,6 +152,20 @@ const likeCounter = document.querySelectorAll(".js-likes-counter");
     console.log(arrayPostLikes)
 })
 })
+
+
+
+function formatDate(created) {
+    const dateObject = new Date(created);
+    const day = dateObject.getDate().toString().padStart(2, '0');
+    const month = (dateObject.getMonth() + 1).toString().padStart(2, '0');
+    const year = dateObject.getFullYear();
+    const formattedDate = `${day}/${month}/${year}`;
+    return formattedDate;
+}
+
+
+
 
 
 
